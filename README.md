@@ -21,6 +21,19 @@ Seed code (`app/`, `scripts/`) is baked into the image and copied into the volum
 
 Windows, macOS or Linux with Docker Desktop (Compose v2). VS Code with the Dev Containers extension is optional.
 
+## Quick start (hands-free)
+
+One command builds the sandbox, seeds it, runs the isolation checks and the workload, then tears everything down:
+
+```powershell
+.un.ps1            # Windows PowerShell
+```
+```bash
+./run.sh             # macOS / Linux / Git Bash
+```
+
+Flags: `-Keep` / `--keep` leaves it running, `-Shell` / `--shell` drops you into a shell inside, `-Down` / `--down` removes it.
+
 ## Usage
 
 ### Option A — VS Code
