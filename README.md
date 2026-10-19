@@ -23,16 +23,17 @@ Windows, macOS or Linux with Docker Desktop (Compose v2). VS Code with the Dev C
 
 ## Quick start (hands-free)
 
-One command builds the sandbox, seeds it, runs the isolation checks and the workload, then tears everything down:
+One command builds the sandbox, seeds it, runs the isolation checks and the workload, and leaves it running so you can inspect it in Docker Desktop:
 
 ```powershell
-.un.ps1            # Windows PowerShell
+.
+un.ps1            # Windows PowerShell
 ```
 ```bash
 ./run.sh             # macOS / Linux / Git Bash
 ```
 
-Flags: `-Keep` / `--keep` leaves it running, `-Shell` / `--shell` drops you into a shell inside, `-Down` / `--down` removes it.
+Flags: `-Clean` / `--clean` removes it afterwards, `-Shell` / `--shell` drops you into a shell inside, `-Down` / `--down` removes it later.
 
 ## Usage
 
