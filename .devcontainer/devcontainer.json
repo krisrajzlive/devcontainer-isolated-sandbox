@@ -1,0 +1,19 @@
+{
+  "name": "isolated-sandbox",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "workspace",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "remoteUser": "dev",
+  "postCreateCommand": "cp -rn /opt/seed/. /workspace/ && python scripts/verify_isolation.py",
+  "customizations": {
+    "vscode": {
+      "extensions": [],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "extensions.autoUpdate": false,
+        "telemetry.telemetryLevel": "off"
+      }
+    }
+  }
+}

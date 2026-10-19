@@ -1,0 +1,32 @@
+name: isolated-sandbox
+
+services:
+  workspace:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    command: sleep infinity
+    user: dev
+    networks: [sandbox]
+    # No `ports:` and no host bind mounts: nothing in, nothing out.
+    volumes:
+      - workspace:/workspace
+      - home:/home/dev
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 256
+    mem_limit: 1g
+    cpus: 2
+
+networks:
+  sandbox:
+    # `internal` removes the gateway: containers get no route to the internet or the host LAN.
+    internal: true
+
+volumes:
+  workspace:
+  home:

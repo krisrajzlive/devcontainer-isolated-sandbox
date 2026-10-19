@@ -1,0 +1,24 @@
+name: verify-isolation
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build sandbox
+        run: docker compose -f .devcontainer/docker-compose.yml build
+      - name: Start sandbox and seed workspace
+        run: |
+          docker compose -f .devcontainer/docker-compose.yml up -d
+          docker compose -f .devcontainer/docker-compose.yml exec -T workspace cp -rn /opt/seed/. /workspace/
+      - name: Verify isolation guarantees
+        run: docker compose -f .devcontainer/docker-compose.yml exec -T workspace python scripts/verify_isolation.py
+      - name: Run file-operation workload
+        run: docker compose -f .devcontainer/docker-compose.yml exec -T workspace python app/file_ops.py
+      - name: Tear down
+        if: always()
+        run: docker compose -f .devcontainer/docker-compose.yml down -v
