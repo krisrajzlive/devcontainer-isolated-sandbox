@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
   One command: build, start, seed, verify isolation, run the workload. Leaves the sandbox running.
-.PARAMETER Keep
-  Leave the sandbox running afterwards (stop it later with: .\run.ps1 -Down).
+.PARAMETER Clean
+  Tear the sandbox down (and delete its volumes) after the checks instead of leaving it running.
 .PARAMETER Shell
   Open an interactive shell inside the sandbox after the checks.
 .PARAMETER Down
